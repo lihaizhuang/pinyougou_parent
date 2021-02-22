@@ -13,9 +13,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.pinyougou</groupId>
-            <artifactId>pinyougou-pojo</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>cn.itcast</groupId>
+            <artifactId>pinyougou_pojo</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
