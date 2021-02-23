@@ -1,7 +1,7 @@
 package com.pinyougou.sellergoods.service;
 
 import com.pinyougou.entity.PageResult;
-import com.pinyougou.pojo.TbBrand;
+import com.pinyougou.pojo.TbGoodsDesc;
 
 import java.util.List;
 /**
@@ -9,13 +9,13 @@ import java.util.List;
  * @author Administrator
  *
  */
-public interface BrandService {
+public interface GoodsDescService {
 
 	/**
 	 * 返回全部列表
 	 * @return
 	 */
-	public List<TbBrand> findAll();
+	public List<TbGoodsDesc> findAll();
 	
 	
 	/**
@@ -28,13 +28,13 @@ public interface BrandService {
 	/**
 	 * 增加
 	*/
-	public void add(TbBrand brand);
+	public void add(TbGoodsDesc goodsDesc);
 	
 	
 	/**
 	 * 修改
 	 */
-	public void update(TbBrand brand);
+	public void update(TbGoodsDesc goodsDesc);
 	
 
 	/**
@@ -42,7 +42,7 @@ public interface BrandService {
 	 * @param id
 	 * @return
 	 */
-	public TbBrand findOne(Long id);
+	public TbGoodsDesc findOne(Long id);
 	
 	
 	/**
@@ -57,6 +57,6 @@ public interface BrandService {
 	 * @param pageSize 每页记录数
 	 * @return
 	 */
-	public PageResult findPage(TbBrand brand, int pageNum, int pageSize);
+	public PageResult findPage(TbGoodsDesc goodsDesc, int pageNum, int pageSize);
 	
 }
