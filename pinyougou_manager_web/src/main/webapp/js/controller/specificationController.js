@@ -2,7 +2,17 @@
 app.controller('specificationController' ,function($scope,$controller   ,specificationService){	
 	
 	$controller('baseController',{$scope:$scope});//继承
-	
+
+    $scope.entity = {specOptionList:[],specification:{}}
+    //点击增加行的效果
+    $scope.addTableRow = function(){
+        $scope.entity.specOptionList.push({}); //注意这里是大括弧，大括弧是对象，代表加新对象
+    }
+
+    $scope.deleTableRow = function(index){
+        $scope.entity.specOptionList.splice(index,1);
+    }
+
     //读取列表数据绑定到表单中  
 	$scope.findAll=function(){
 		specificationService.findAll().success(
@@ -34,7 +44,7 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 	//保存 
 	$scope.save=function(){				
 		var serviceObject;//服务层对象  				
-		if($scope.entity.id!=null){//如果有ID
+		if($scope.entity.specification.id!=null){//如果有ID
 			serviceObject=specificationService.update( $scope.entity ); //修改  
 		}else{
 			serviceObject=specificationService.add( $scope.entity  );//增加 

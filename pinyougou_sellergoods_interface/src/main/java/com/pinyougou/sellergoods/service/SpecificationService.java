@@ -1,9 +1,12 @@
 package com.pinyougou.sellergoods.service;
 
 import com.pinyougou.entity.PageResult;
+import com.pinyougou.pojo.Specification;
 import com.pinyougou.pojo.TbSpecification;
 
 import java.util.List;
+import java.util.Map;
+
 /**
  * 服务层接口
  * @author Administrator
@@ -28,13 +31,13 @@ public interface SpecificationService {
 	/**
 	 * 增加
 	*/
-	public void add(TbSpecification specification);
+	public void add(Specification specification);
 	
 	
 	/**
 	 * 修改
 	 */
-	public void update(TbSpecification specification);
+	public void update(Specification specification);
 	
 
 	/**
@@ -42,7 +45,7 @@ public interface SpecificationService {
 	 * @param id
 	 * @return
 	 */
-	public TbSpecification findOne(Long id);
+	public Specification findOne(Long id);
 	
 	
 	/**
@@ -58,5 +61,11 @@ public interface SpecificationService {
 	 * @return
 	 */
 	public PageResult findPage(TbSpecification specification, int pageNum, int pageSize);
-	
+
+
+	/**
+	 * 	获取规格 名和 id
+	 * @return
+	 */
+	List<Map> selectOptionList();
 }

@@ -1,8 +1,32 @@
  //控制层 
-app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemplateService){	
+app.controller('typeTemplateController' ,function($scope,$controller,typeTemplateService,brandService,specificationService){
 	
 	$controller('baseController',{$scope:$scope});//继承
-	
+
+	//定义个空的品牌数据
+    $scope.brandList = {data:[]};
+    //调用方法查询品牌数据
+	$scope.findBrandList = function () {
+        brandService.selectOptionList().success(function (response) {
+            $scope.brandList.data= response;
+        })
+    }
+    //定义一个空的规格数据
+    $scope.specList={data:[]}; //可以避免页面的一些初始值错误
+    $scope.findSpecList = function () {
+		specificationService.selectOptionList().success(function (response) {
+            $scope.specList.data = response;
+        })
+    }
+
+    $scope.addTableRow = function(){
+        $scope.entity.customAttributeItems.push({});
+    }
+
+    $scope.deleTableRow = function(index){
+        $scope.entity.customAttributeItems.splice(index,1);
+    }
+
     //读取列表数据绑定到表单中  
 	$scope.findAll=function(){
 		typeTemplateService.findAll().success(
@@ -26,7 +50,10 @@ app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemp
 	$scope.findOne=function(id){				
 		typeTemplateService.findOne(id).success(
 			function(response){
-				$scope.entity= response;					
+				$scope.entity= response;
+                $scope.entity.brandIds = JSON.parse($scope.entity.brandIds);
+                $scope.entity.specIds = JSON.parse($scope.entity.specIds);
+                $scope.entity.customAttributeItems = JSON.parse($scope.entity.customAttributeItems);
 			}
 		);				
 	}

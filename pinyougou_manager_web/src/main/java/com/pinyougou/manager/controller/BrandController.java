@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
+
 /**
  * controller
  * @author Administrator
@@ -109,6 +111,15 @@ public class BrandController {
 	@RequestMapping("/search")
 	public PageResult search(@RequestBody TbBrand brand, int page, int rows  ){
 		return brandService.findPage(brand, page, rows);		
+	}
+
+	/**
+	 *  查询 全部品牌 +id
+	 * */
+
+	@RequestMapping("/selectOptionList")
+	public List<Map> selectOptionList(){
+		return brandService.selectOptionList();
 	}
 	
 }
