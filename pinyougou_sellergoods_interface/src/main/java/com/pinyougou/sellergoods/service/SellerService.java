@@ -42,14 +42,14 @@ public interface SellerService {
 	 * @param id
 	 * @return
 	 */
-	public TbSeller findOne(Long id);
+	public TbSeller findOne(String id);
 	
 	
 	/**
 	 * 批量删除
 	 * @param ids
 	 */
-	public void delete(Long[] ids);
+	public void delete(String[] ids);
 
 	/**
 	 * 分页
@@ -58,5 +58,9 @@ public interface SellerService {
 	 * @return
 	 */
 	public PageResult findPage(TbSeller seller, int pageNum, int pageSize);
-	
+
+	/**
+	 * 审核
+	 */
+	void updateStatus(String sellerId,String status);
 }

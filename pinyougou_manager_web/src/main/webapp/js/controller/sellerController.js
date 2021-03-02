@@ -50,6 +50,19 @@ app.controller('sellerController' ,function($scope,$controller   ,sellerService)
 			}		
 		);				
 	}
+    //新增
+    $scope.add=function(){
+        sellerService.add( $scope.entity  ).success(
+            function(response){
+                if(response.success){
+                    //如果注册成功跳转到登录页面
+                    location.href="shoplogin.html";
+                }else{
+                    alert(response.message);
+                }
+            }
+        );
+    }
 	
 	 
 	//批量删除 
@@ -76,5 +89,15 @@ app.controller('sellerController' ,function($scope,$controller   ,sellerService)
 			}			
 		);
 	}
+	//审核
+	$scope.updateStatus=function (sellerId,status) {
+		sellerService.updateStatus(sellerId,status).success(function (data) {
+			if(data.success){
+                $scope.reloadList();
+			}else {
+				alert(data.message)
+			}
+		})
+    }
     
 });	

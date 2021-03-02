@@ -11,6 +11,7 @@ import com.pinyougou.pojo.TbSellerExample.Criteria;
 import com.pinyougou.sellergoods.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -47,6 +48,8 @@ public class SellerServiceImpl implements SellerService {
 	 */
 	@Override
 	public void add(TbSeller seller) {
+		seller.setStatus("0");//状态初始化 0:未审核 1:已审核 2:已驳回 3:已停用
+		seller.setCreateTime(new Date());//日期初始化
 		sellerMapper.insert(seller);		
 	}
 
@@ -65,17 +68,17 @@ public class SellerServiceImpl implements SellerService {
 	 * @return
 	 */
 	@Override
-	public TbSeller findOne(Long id){
-		return sellerMapper.selectByPrimaryKey(id+"");
+	public TbSeller findOne(String id){
+		return sellerMapper.selectByPrimaryKey(id);
 	}
 
 	/**
 	 * 批量删除
 	 */
 	@Override
-	public void delete(Long[] ids) {
-		for(Long id:ids){
-			sellerMapper.deleteByPrimaryKey(id+"");
+	public void delete(String[] ids) {
+		for(String id:ids){
+			sellerMapper.deleteByPrimaryKey(id);
 		}		
 	}
 	
@@ -160,5 +163,11 @@ public class SellerServiceImpl implements SellerService {
 		Page<TbSeller> page= (Page<TbSeller>)sellerMapper.selectByExample(example);		
 		return new PageResult(page.getTotal(), page.getResult());
 	}
-	
+
+	@Override
+	public void updateStatus(String sellerId, String status) {
+		TbSeller seller = sellerMapper.selectByPrimaryKey(sellerId);
+		seller.setStatus(status);
+		sellerMapper.updateByPrimaryKey(seller);
+	}
 }
