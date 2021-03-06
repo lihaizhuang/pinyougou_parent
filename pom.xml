@@ -16,6 +16,7 @@
         <module>pinyougou_sellergoods_service</module>
         <module>pinyougou_manager_web</module>
         <module>pinyougou_shop_web</module>
+        <module>pinyougou_content_interface</module>
     </modules>
     <!-- 集中定义依赖版本号 -->
     <properties>
@@ -158,6 +159,7 @@
             <artifactId>druid</artifactId>
             <version>${druid.version}</version>
         </dependency>
+        <!--分布式文件服务器FastDFS依赖-->
         <dependency>
             <groupId>org.csource.fastdfs</groupId>
             <artifactId>fastdfs</artifactId>

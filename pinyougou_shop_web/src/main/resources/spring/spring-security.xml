@@ -46,7 +46,7 @@ http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 
 	<!-- 引用dubbo 服务 -->
 	<dubbo:application name="pinyougou-shop-web" />
-	<dubbo:registry address="zookeeper://192.168.65.136:2181"/>
+	<dubbo:registry address="zookeeper://192.168.65.137:2181"/>
 	<dubbo:annotation package="com.pinyougou.service.impl"></dubbo:annotation>
 	<!--<dubbo:reference id="sellerService" interface="com.pinyougou.sellergoods.service.SellerService"></dubbo:reference>-->
 

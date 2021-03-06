@@ -1,5 +1,5 @@
  //控制层 
-app.controller('itemCatController' ,function($scope,$controller   ,itemCatService){	
+app.controller('itemCatController' ,function($scope,$controller   ,itemCatService,typeTemplateService){
 	
 	$controller('baseController',{$scope:$scope});//继承
 	
@@ -8,6 +8,7 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 		itemCatService.findAll().success(
 			function(response){
 				$scope.list=response;
+                // $scope.entity.typeId = JSON.parse($scope.entity.typeId);
 			}			
 		);
 	}    
@@ -26,24 +27,26 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 	$scope.findOne=function(id){				
 		itemCatService.findOne(id).success(
 			function(response){
-				$scope.entity= response;					
+				$scope.entity= response;
 			}
 		);				
 	}
 	
 	//保存 
 	$scope.save=function(){				
-		var serviceObject;//服务层对象  				
+		var serviceObject;//服务层对象
+        $scope.entity.typeId =$scope.entity.typeText.id;
 		if($scope.entity.id!=null){//如果有ID
 			serviceObject=itemCatService.update( $scope.entity ); //修改  
 		}else{
+            $scope.entity.parentId=$scope.parentId;//赋予上级ID
 			serviceObject=itemCatService.add( $scope.entity  );//增加 
 		}				
 		serviceObject.success(
 			function(response){
 				if(response.success){
-					//重新查询 
-		        	$scope.reloadList();//重新加载
+					//重新查询
+                    $scope.findByParentId($scope.parentId);//重新加载
 				}else{
 					alert(response.message);
 				}
@@ -58,7 +61,8 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 		itemCatService.dele( $scope.selectIds ).success(
 			function(response){
 				if(response.success){
-					$scope.reloadList();//刷新列表
+					// $scope.reloadList();//刷新列表
+                    $scope.findByParentId($scope.parentId);//刷新列表
 					$scope.selectIds=[];
 				}						
 			}		
@@ -76,8 +80,12 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 			}			
 		);
 	}
+
+	$scope.parentId = 0;
     //根据上级分类ID查询列表
     $scope.findByParentId=function(parentId){
+
+        $scope.parentId=parentId;//记住上级id
         itemCatService.findParentId(parentId).success(
             function(response){
                 $scope.list = response;
@@ -102,5 +110,12 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
             $scope.entity_2=p_entity;
         }
         $scope.findByParentId(p_entity.id);
+    }
+    
+    $scope.typeList={data:[]};
+    $scope.findTypeList=function () {
+        typeTemplateService.selectOptionList().success(function (data) {
+            $scope.typeList.data =data;
+        })
     }
 });	

@@ -1,4 +1,7 @@
-package com.pinyougou.pojo;
+package com.pinyougou.pojogourp;
+
+import com.pinyougou.pojo.TbSpecification;
+import com.pinyougou.pojo.TbSpecificationOption;
 
 import java.io.Serializable;
 import java.util.List;

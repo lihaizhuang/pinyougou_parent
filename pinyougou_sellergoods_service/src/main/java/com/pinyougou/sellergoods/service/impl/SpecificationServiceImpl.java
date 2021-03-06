@@ -8,6 +8,7 @@ import com.pinyougou.mapper.TbSpecificationMapper;
 import com.pinyougou.mapper.TbSpecificationOptionMapper;
 import com.pinyougou.pojo.*;
 import com.pinyougou.pojo.TbSpecificationExample.Criteria;
+import com.pinyougou.pojogourp.Specification;
 import com.pinyougou.sellergoods.service.SpecificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 

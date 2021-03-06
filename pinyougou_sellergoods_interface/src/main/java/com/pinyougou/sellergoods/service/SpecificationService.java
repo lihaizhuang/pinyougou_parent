@@ -1,7 +1,7 @@
 package com.pinyougou.sellergoods.service;
 
 import com.pinyougou.entity.PageResult;
-import com.pinyougou.pojo.Specification;
+import com.pinyougou.pojogourp.Specification;
 import com.pinyougou.pojo.TbSpecification;
 
 import java.util.List;

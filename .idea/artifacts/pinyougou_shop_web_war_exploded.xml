@@ -13,6 +13,9 @@
           <element id="archive" name="pinyougou_pojo-1.0-SNAPSHOT.jar">
             <element id="module-output" name="pinyougou_pojo" />
           </element>
+          <element id="archive" name="pinyougou_common-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="pinyougou_common" />
+          </element>
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.2.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:4.2.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:4.2.4.RELEASE" />
